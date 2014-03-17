@@ -17,7 +17,7 @@ Bundle 'nathanaelkane/vim-indent-guides'
 Bundle 'Shougo/neocomplete.vim'
 Bundle 'Shougo/unite.vim'
 
-Bundle 'jnwhiteh/vim-golang'
+Bundle 'Blackrush/vim-gocode' 
 Bundle 'tpope/vim-markdown'
 Bundle 'digitaltoad/vim-jade'
 Bundle 'wavded/vim-stylus'
