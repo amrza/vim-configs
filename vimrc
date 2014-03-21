@@ -16,6 +16,9 @@ Bundle 'nathanaelkane/vim-indent-guides'
 
 Bundle 'Shougo/neocomplete.vim'
 Bundle 'Shougo/unite.vim'
+Bundle 'tpope/vim-commentary'
+Bundle 'godlygeek/tabular'
+Bundle 'sjl/gundo.vim'
 
 Bundle 'Blackrush/vim-gocode' 
 Bundle 'tpope/vim-markdown'
@@ -114,7 +117,7 @@ endif
 " General Key bindings
 "-------------------------------------------------------------------------------
 " change the mapleader from \ to ,
-let mapleader=","
+let mapleader = "\<Space>"
 
 " make ; be an alias for :
 nnoremap ; :
@@ -163,7 +166,7 @@ autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
 " <TAB>: completion.
 inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
-inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
+" inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
 
 " json = javascript syntax highlight
 autocmd FileType json setlocal syntax=javascript
@@ -190,20 +193,20 @@ set ttimeoutlen=50
 let g:unite_enable_start_insert = 1
 
 " Map space to the prefix for Unite
-nnoremap [unite] <Nop>
-nmap <space> [unite]
+" nnoremap [unite] <Nop>
+" nmap <space> [unite]
 
 " Quick buffer search
-nnoremap <silent> [unite]b :<C-u>Unite -buffer-name=buffers buffer<CR>
+nnoremap <silent> <leader>b :<C-u>Unite -buffer-name=buffers buffer<CR>
 
 " Quick file search
-nnoremap <silent> [unite]f :<C-u>Unite -buffer-name=files file_rec file/new<CR>
+nnoremap <silent> <leader>f :<C-u>Unite -buffer-name=files file_rec file/new<CR>
 
 " Quickly switch lcd
-nnoremap <silent> [unite]d :<C-u>Unite -buffer-name=change-cwd -default-action=cd directory_rec<CR>
+nnoremap <silent> <leader>d :<C-u>Unite -buffer-name=change-cwd -default-action=cd directory_rec<CR>
 
 " Quick commands
-nnoremap <silent> [unite]c :<C-u>Unite -buffer-name=commands command<CR>
+nnoremap <silent> <leader>c :<C-u>Unite -buffer-name=commands command<CR>
 
 
 
