@@ -13,6 +13,7 @@ Bundle 'gmarik/vundle'
 Bundle 'altercation/vim-colors-solarized'
 Bundle 'bling/vim-airline'
 Bundle 'nathanaelkane/vim-indent-guides'
+Bundle 'Raimondi/delimitMate'
 
 Bundle 'Shougo/neocomplete.vim'
 Bundle 'Shougo/unite.vim'
@@ -81,7 +82,7 @@ set ttyfast           "improves redrawing
 set visualbell        "don't beep
 set noerrorbells      "don't beep
 
-set clipboard=unnamed
+set clipboard=unnamed   " trying to use system clipboard
 
 
 "Setup WildMenu
@@ -140,7 +141,7 @@ xnoremap > >gv
 
 " Copy, Paste, Cut (works with system clipboard due to clipboard setting)
 vnoremap <C-c> y`]
-noremap <silent> <leader>c "+y <CR>:echo "Copy done!"<CR>
+noremap <silent> <leader>y "+y <CR>:echo "Copy done!"<CR>
 noremap <silent> <leader>p "+p <CR>:echo "Paste done!"<CR>
 noremap <silent> <leader>x "+x <CR>:echo "Cut done!"<CR>
 
@@ -200,13 +201,13 @@ let g:unite_enable_start_insert = 1
 nnoremap <silent> <leader>b :<C-u>Unite -buffer-name=buffers buffer<CR>
 
 " Quick file search
-nnoremap <silent> <leader>f :<C-u>Unite -buffer-name=files file_rec file/new<CR>
+nnoremap <silent> <leader>o :<C-u>Unite -buffer-name=files file_rec file/new<CR>
 
 " Quickly switch lcd
 nnoremap <silent> <leader>d :<C-u>Unite -buffer-name=change-cwd -default-action=cd directory_rec<CR>
 
 " Quick commands
-nnoremap <silent> <leader>c :<C-u>Unite -buffer-name=commands command<CR>
+" nnoremap <silent> <leader>c :<C-u>Unite -buffer-name=commands command<CR>
 
 
 
