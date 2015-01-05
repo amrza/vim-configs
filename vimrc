@@ -1,31 +1,36 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
 
+set encoding=utf-8
+scriptencoding utf-8
+
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/vundle/
 call vundle#rc()
 
 " let Vundle manage Vundle, required
-Bundle 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 
 " Keep bundle commands between here and filetype plugin indent on.
-Bundle 'altercation/vim-colors-solarized'
-Bundle 'bling/vim-airline'
-Bundle 'nathanaelkane/vim-indent-guides'
-Bundle 'Raimondi/delimitMate'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'fxn/vim-monochrome' 
+Plugin 'bling/vim-airline'
+Plugin 'nathanaelkane/vim-indent-guides'
+Plugin 'Raimondi/delimitMate'
 
-Bundle 'Shougo/neocomplete.vim'
-Bundle 'Shougo/unite.vim'
-Bundle 'tpope/vim-commentary'
-Bundle 'godlygeek/tabular'
-Bundle 'sjl/gundo.vim'
+Plugin 'Shougo/neocomplete.vim'
+"Plugin 'Shougo/unite.vim'
+Plugin 'kien/ctrlp.vim'
+Plugin 'tpope/vim-commentary'
+Plugin 'godlygeek/tabular'
+Plugin 'sjl/gundo.vim'
+Plugin 'ervandew/supertab'
 
-Bundle 'Blackrush/vim-gocode' 
-Bundle 'tpope/vim-markdown'
-Bundle 'digitaltoad/vim-jade'
-Bundle 'wavded/vim-stylus'
-
+Plugin 'fatih/vim-go'
+Plugin 'tpope/vim-markdown'
+Plugin 'digitaltoad/vim-jade'
+Plugin 'wavded/vim-stylus'
 
 
 filetype plugin indent on     " required
@@ -35,7 +40,6 @@ filetype plugin indent on     " required
 "-------------------------------------------------------------------------------
 syntax on
 
-set encoding=utf-8    "use utf8 for text encoding
 set hidden            "enable hidden buffers (in background)
 set title             "change the terminal's title
 
@@ -46,7 +50,7 @@ set ruler             "show the ruler bar
 set scrolloff=7       "always keep some lines from edge of the screen
 set cmdheight=1       "show 1 line for command line area
 
-set colorcolumn=100   "show right margin
+set colorcolumn=80    "show right margin
 set cursorline        "highlight current line
 set showmatch         "Show matchs
 
@@ -84,8 +88,7 @@ set noerrorbells      "don't beep
 
 set clipboard=unnamed   " trying to use system clipboard
 
-
-"Setup WildMenu
+" Setup WildMenu
 set wildmenu
 set wildignore+=*~,*.dll,*.o,*.pyc,*.bak,*.exe,*.jpg,*.jpeg,*.png,*.gif 
 set wildignore+=*.pdf,*.class,*.tar,*.gz,*.zip,*.jar,*.flv,*.mp3,tags
@@ -111,14 +114,14 @@ if has("gui_running")
 else
   set t_Co=256                    
   set background=dark
-  colorscheme solarized
+  colorscheme monochrome
 endif
 
 
 " General Key bindings
 "-------------------------------------------------------------------------------
 " change the mapleader from \ to ,
-let mapleader = "\<Space>"
+let g:mapleader = "\<Space>"
 
 " make ; be an alias for :
 nnoremap ; :
@@ -151,6 +154,13 @@ nnoremap <silent> <S-j> 2<C-W>-
 nnoremap <silent> <S-k> 2<C-W>+
 nnoremap <silent> <S-l> 2<C-w>>
 
+" Delete/Cut char send chars to black hole register.
+noremap <silent> x "_x
+noremap <silent> X "_X
+
+" Easy save, even on insert mode.
+nnoremap <leader>s :w<cr>
+inoremap <leader>s <C-c>:w<cr>
 
 "neocomplcache
 "-----------------------
@@ -191,23 +201,30 @@ set ttimeoutlen=50
 
 " Unite
 "----------------------
-let g:unite_enable_start_insert = 1
+"let g:unite_enable_start_insert = 1
 
 " Map space to the prefix for Unite
 " nnoremap [unite] <Nop>
 " nmap <space> [unite]
 
 " Quick buffer search
-nnoremap <silent> <leader>b :<C-u>Unite -buffer-name=buffers buffer<CR>
+"nnoremap <silent> <leader>b :<C-u>Unite -buffer-name=buffers buffer<CR>
 
 " Quick file search
-nnoremap <silent> <leader>o :<C-u>Unite -buffer-name=files file_rec file/new<CR>
+"nnoremap <silent> <leader>o :<C-u>Unite -buffer-name=files file_rec file/new<CR>
 
 " Quickly switch lcd
-nnoremap <silent> <leader>d :<C-u>Unite -buffer-name=change-cwd -default-action=cd directory_rec<CR>
+"nnoremap <silent> <leader>d :<C-u>Unite -buffer-name=change-cwd -default-action=cd directory_rec<CR>
 
 " Quick commands
 " nnoremap <silent> <leader>c :<C-u>Unite -buffer-name=commands command<CR>
 
-
+" CtrlP
+"------------------------------
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_by_filename = 1 
+let g:ctrlp_working_path_mode = 0
+"let g:ctrlp_working_path_mode = 'ra'
+let g:ctrlp_show_hidden = 1
+let g:ctrlp_max_depth = 2 
 
