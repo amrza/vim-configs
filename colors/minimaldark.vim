@@ -43,7 +43,7 @@ hi String      ctermfg=066  guifg=#5f8787  ctermbg=NONE  guibg=NONE    term=NONE
 
 hi Todo        ctermfg=239   guifg=#4e4e4e  ctermbg=NONE  guibg=NONE       term=NONE  cterm=NONE  gui=NONE
 hi StatusLine  ctermfg=233   guifg=#121212  ctermbg=244   guibg=#808080    term=NONE  cterm=NONE  gui=NONE 
-hi ColorColumn ctermfg=244   guifg=#808080  ctermbg=NONE  guibg=NONE       term=NONE  cterm=NONE  gui=NONE 
+hi ColorColumn ctermfg=NONE  guifg=NONE     ctermbg=234   guibg=#1c1c1c    term=NONE  cterm=NONE  gui=NONE 
 hi LineNr      ctermfg=244   guifg=#808080  ctermbg=234   guibg=#1c1c1c    term=NONE  cterm=NONE  gui=NONE 
 hi CursorLine  ctermfg=NONE  guifg=NONE     ctermbg=234   guibg=#1c1c1c    term=NONE  cterm=NONE  gui=NONE 
 hi MatchParen  ctermfg=160   guifg=#d70000  ctermbg=NONE  guibg=NONE       term=bold  cterm=bold  gui=NONE 
