@@ -11,10 +11,8 @@ call vundle#rc()
 " let Vundle manage Vundle, required
 Plugin 'gmarik/vundle'
 
-
 " Keep bundle commands between here and filetype plugin indent on.
 Plugin 'altercation/vim-colors-solarized'
-Plugin 'fxn/vim-monochrome' 
 Plugin 'bling/vim-airline'
 Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'Raimondi/delimitMate'
@@ -108,19 +106,19 @@ if has("gui_running")
   set guioptions-=r
   set guioptions+=c
   
-  set guifont=Menlo:h14
+  set guifont=Fira\ Mono:h15
   set background=dark
-  colorscheme solarized
+  colorscheme minimaldark
 else
   set t_Co=256                    
   set background=dark
-  colorscheme monochrome
+  colorscheme minimaldark
 endif
 
 
 " General Key bindings
 "-------------------------------------------------------------------------------
-" change the mapleader from \ to ,
+" change the mapleader from \ to space
 let g:mapleader = "\<Space>"
 
 " make ; be an alias for :
@@ -160,7 +158,7 @@ noremap <silent> X "_X
 
 " Easy save, even on insert mode.
 nnoremap <leader>s :w<cr>
-inoremap <leader>s <C-c>:w<cr>
+"inoremap <leader>s <C-c>:w<cr>
 
 "neocomplcache
 "-----------------------
