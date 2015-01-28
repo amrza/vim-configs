@@ -1,4 +1,4 @@
-" Name: minimal-theme.vim, A minimal theme based on xterm-256 color set
+" Name: minimaldark.vim, A minimal theme based on xterm-256 color set
 " Author: Amirreza Ghaderi <amirreza.blog@gmail.com>
 " Version: 0.9
 " License: Use of this source code is governed by the 'Revised BSD License'
@@ -6,10 +6,9 @@
 
 " Commentary:
 " Im not a big fan of syntax highlighting! to me, syntax highlighting is a 
-" distraction! of course many programmers may not agree with this opinion,
-" but for those who does, this is a VERY minimalistic color theme which use
+" distraction! Of course many programmers may not accept this opinion,
+" but for those who do, this is a VERY minimalistic color theme which use
 " xterm-256 color set so it has a unified look in both GUI and Terminal.
-" this theme comes in dark, and light version. 
 
 set background=dark
 
