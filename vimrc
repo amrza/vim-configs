@@ -83,7 +83,13 @@ set ttyfast           "improves redrawing
 set visualbell        "don't beep
 set noerrorbells      "don't beep
 
-set clipboard=unnamed   " trying to use system clipboard
+" Use clipboard register.
+if has('unnamedplus')
+  set clipboard& clipboard+=unnamedplus
+else
+  set clipboard& clipboard+=unnamed
+endif
+
 
 " Setup WildMenu
 set wildmenu
@@ -214,4 +220,14 @@ nnoremap <leader>o :Unite file<CR>
 "File search.
 nnoremap <leader>b :Unite buffer<CR>
 
+autocmd FileType unite call s:unite_my_settings()
+function! s:unite_my_settings()
+  " Overwrite settings.
+  nmap <buffer> <ESC> <Plug>(unite_exit)
+  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+  imap <silent><buffer><expr> <C-s> unite#do_action('split')
+  imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+  imap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
+endfunction
 
