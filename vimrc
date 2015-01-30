@@ -1,4 +1,4 @@
-set nocompatible              " be iMproved, required
+set nocompatible              " Turn off vi compatibility.
 filetype off                  " required
 
 set encoding=utf-8
@@ -18,8 +18,7 @@ Plugin 'nathanaelkane/vim-indent-guides'
 Plugin 'Raimondi/delimitMate'
 
 Plugin 'Shougo/neocomplete.vim'
-"Plugin 'Shougo/unite.vim'
-Plugin 'kien/ctrlp.vim'
+Plugin 'Shougo/unite.vim'
 Plugin 'tpope/vim-commentary'
 Plugin 'godlygeek/tabular'
 Plugin 'sjl/gundo.vim'
@@ -88,7 +87,7 @@ set clipboard=unnamed   " trying to use system clipboard
 
 " Setup WildMenu
 set wildmenu
-set wildignore+=*~,*.dll,*.o,*.pyc,*.bak,*.exe,*.jpg,*.jpeg,*.png,*.gif 
+set wildignore+=*/.git/*,*~,*.dll,*.o,*.pyc,*.bak,*.exe,*.jpg,*.jpeg,*.png,*.gif 
 set wildignore+=*.pdf,*.class,*.tar,*.gz,*.zip,*.jar,*.flv,*.mp3,tags
 set wildmode=longest:full,full
 if exists("&wildignorecase")
@@ -199,30 +198,20 @@ set ttimeoutlen=50
 
 " Unite
 "----------------------
-"let g:unite_enable_start_insert = 1
+let g:unite_enable_start_insert = 1
+let g:unite_enable_ignore_case  = 1
+let g:unite_enable_smart_case   = 1
+let g:unite_enable_start_insert = 1
+let g:unite_winheight           = 10
+let g:unite_split_rule          = 'botright'
+let g:unite_prompt              = '➤ '
 
-" Map space to the prefix for Unite
-" nnoremap [unite] <Nop>
-" nmap <space> [unite]
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
 
-" Quick buffer search
-"nnoremap <silent> <leader>b :<C-u>Unite -buffer-name=buffers buffer<CR>
+" Buffer search.
+nnoremap <leader>o :Unite file<CR>
 
-" Quick file search
-"nnoremap <silent> <leader>o :<C-u>Unite -buffer-name=files file_rec file/new<CR>
+"File search.
+nnoremap <leader>b :Unite buffer<CR>
 
-" Quickly switch lcd
-"nnoremap <silent> <leader>d :<C-u>Unite -buffer-name=change-cwd -default-action=cd directory_rec<CR>
-
-" Quick commands
-" nnoremap <silent> <leader>c :<C-u>Unite -buffer-name=commands command<CR>
-
-" CtrlP
-"------------------------------
-let g:ctrlp_map = '<c-p>'
-let g:ctrlp_by_filename = 1 
-let g:ctrlp_working_path_mode = 0
-"let g:ctrlp_working_path_mode = 'ra'
-let g:ctrlp_show_hidden = 1
-let g:ctrlp_max_depth = 2 
 
