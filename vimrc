@@ -4,32 +4,30 @@ filetype off                  " required
 set encoding=utf-8
 scriptencoding utf-8
 
-" set the runtime path to include Vundle and initialize
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
+" Plugins are managed by vim-plug
+call plug#begin('~/.vim/plugged')
 
-" let Vundle manage Vundle, required
-Plugin 'gmarik/vundle'
+Plug 'altercation/vim-colors-solarized'
+Plug 'bling/vim-airline'
+"Plug 'nathanaelkane/vim-indent-guides'
+Plug 'Raimondi/delimitMate'
 
-" Keep bundle commands between here and filetype plugin indent on.
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'bling/vim-airline'
-Plugin 'nathanaelkane/vim-indent-guides'
-Plugin 'Raimondi/delimitMate'
+"Plug 'Shougo/neocomplete.vim'
+"Plug 'Shougo/unite.vim'
+Plug 'tpope/vim-commentary'
+Plug 'godlygeek/tabular'
+Plug 'sjl/gundo.vim'
+Plug 'ervandew/supertab'
+Plug 'scrooloose/nerdtree'
 
-Plugin 'Shougo/neocomplete.vim'
-Plugin 'Shougo/unite.vim'
-Plugin 'tpope/vim-commentary'
-Plugin 'godlygeek/tabular'
-Plugin 'sjl/gundo.vim'
-Plugin 'ervandew/supertab'
-Plugin 'scrooloose/nerdtree'
+Plug 'fatih/vim-go'
+Plug 'wting/rust.vim'
+Plug 'elixir-lang/vim-elixir'
+Plug 'tpope/vim-markdown'
+Plug 'digitaltoad/vim-jade'
+Plug 'wavded/vim-stylus'
 
-Plugin 'fatih/vim-go'
-Plugin 'elixir-lang/vim-elixir'
-Plugin 'tpope/vim-markdown'
-Plugin 'digitaltoad/vim-jade'
-Plugin 'wavded/vim-stylus'
+call plug#end()
 
 
 filetype plugin indent on     " required
@@ -59,7 +57,8 @@ set shiftwidth=4      "number of space for auto indention with >> or <<
 set softtabstop=4     "number of spaces that <Tab> uses while editing
 set smarttab          "smart tab
 set ai                "Auto indent
-set si                "Smart indet
+"set si                "Smart indet
+set nosi
 
 "set nowrap            "don't wrap lines
 set linebreak         "Break at word boundaries when wrapping
@@ -123,6 +122,13 @@ else
 endif
 
 
+" File specific
+autocmd Filetype html setlocal ts=2 sw=2 expandtab
+autocmd Filetype css  setlocal ts=2 sw=2 expandtab
+autocmd Filetype javascript setlocal ts=2 sw=2 expandtab
+
+
+
 " General Key bindings
 "-------------------------------------------------------------------------------
 " change the mapleader from \ to space
@@ -163,29 +169,48 @@ nnoremap <silent> <S-l> 2<C-w>>
 noremap <silent> x "_x
 noremap <silent> X "_X
 
-" Easy save, even on insert mode.
+" Easy save.
 nnoremap <leader>s :w<cr>
 "inoremap <leader>s <C-c>:w<cr>
 
+
+
+" NERDTree
+"- ---------------------
+" Set the current dir same as the file you are editing.
+autocmd BufEnter * silent! lcd %:p:h
+
+map <C-n> :NERDTreeToggle<CR>
+
+" Open NERDTree on startup
+autocmd vimenter * NERDTreeFind
+
+"Set default width for NERDTree panel
+let g:NERDTreeWinSize = 35
+
+" Close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+
 "neocomplcache
 "-----------------------
-let g:acp_enableAtStartup = 0
-let g:neocomplete#enable_at_startup = 1
-let g:neocomplete#enable_ignore_case = 1
-let g:neocomplete#enable_auto_select = 1
-let g:neocomplete#sources#syntax#min_keyword_length = 3
+"let g:acp_enableAtStartup = 0
+"let g:neocomplete#enable_at_startup = 1
+"let g:neocomplete#enable_ignore_case = 1
+"let g:neocomplete#enable_auto_select = 1
+"let g:neocomplete#sources#syntax#min_keyword_length = 3
 
 " Enable omni completion.
-autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
-autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
-autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
+"autocmd FileType css setlocal omnifunc=csscomplete#CompleteCSS
+"autocmd FileType html,markdown setlocal omnifunc=htmlcomplete#CompleteTags
+"autocmd FileType javascript setlocal omnifunc=javascriptcomplete#CompleteJS
 
 " <TAB>: completion.
-inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
+""inoremap <expr><TAB>  pumvisible() ? "\<C-n>" : "\<TAB>"
 " inoremap <expr><Space> pumvisible() ? neocomplete#close_popup() : "\<Space>"
 
 " json = javascript syntax highlight
-autocmd FileType json setlocal syntax=javascript
+"autocmd FileType json setlocal syntax=javascript
 
 
 "Airline
@@ -206,30 +231,30 @@ set ttimeoutlen=50
 
 " Unite
 "----------------------
-let g:unite_enable_start_insert = 1
-let g:unite_enable_ignore_case  = 1
-let g:unite_enable_smart_case   = 1
-let g:unite_enable_start_insert = 1
-let g:unite_winheight           = 10
-let g:unite_split_rule          = 'botright'
-let g:unite_prompt              = '➤ '
+" let g:unite_enable_start_insert = 1
+" let g:unite_enable_ignore_case  = 1
+" let g:unite_enable_smart_case   = 1
+" let g:unite_enable_start_insert = 1
+" let g:unite_winheight           = 10
+" let g:unite_split_rule          = 'botright'
+" let g:unite_prompt              = '➤ '
 
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
+" call unite#filters#matcher_default#use(['matcher_fuzzy'])
 
-" Buffer search.
-nnoremap <leader>o :Unite file<CR>
+" " Buffer search.
+" nnoremap <leader>o :Unite file<CR>
 
-"File search.
-nnoremap <leader>b :Unite buffer<CR>
+" "File search.
+" nnoremap <leader>b :Unite buffer<CR>
 
-autocmd FileType unite call s:unite_my_settings()
-function! s:unite_my_settings()
-  " Overwrite settings.
-  nmap <buffer> <ESC> <Plug>(unite_exit)
-  imap <buffer> <C-j>   <Plug>(unite_select_next_line)
-  imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
-  imap <silent><buffer><expr> <C-s> unite#do_action('split')
-  imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
-  imap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
-endfunction
+" autocmd FileType unite call s:unite_my_settings()
+" function! s:unite_my_settings()
+"   " Overwrite settings.
+"   nmap <buffer> <ESC> <Plug>(unite_exit)
+"   imap <buffer> <C-j>   <Plug>(unite_select_next_line)
+"   imap <buffer> <C-k>   <Plug>(unite_select_previous_line)
+"   imap <silent><buffer><expr> <C-s> unite#do_action('split')
+"   imap <silent><buffer><expr> <C-v> unite#do_action('vsplit')
+"   imap <silent><buffer><expr> <C-t> unite#do_action('tabopen')
+" endfunction
 

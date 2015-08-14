@@ -1,6 +1,8 @@
 .DS_*
 .n*
-bundle/
-~bundle/README.md
 
+autoload/
+~autoload/README.md
 
+plugged/
+~plugged/README.md
